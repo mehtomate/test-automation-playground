@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation       Page Object for the SauceDemo Cart Page.
 
-Resource            ../resources/common.resource
+Resource            ../../resources/common.resource
 
 
 *** Variables ***

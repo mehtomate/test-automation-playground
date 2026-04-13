@@ -17,7 +17,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
+        node-version: '24'
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -35,7 +35,8 @@ jobs:
 
     - name: Run Robot Framework Tests
       run: |
-        python -m robot -d results tests/
+        npx -y playwright install-deps
+        python -m robot -d results -v HEADLESS:True tests/
 
     - name: Upload Test Results
       if: always()
