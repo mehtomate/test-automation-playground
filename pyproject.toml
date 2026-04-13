@@ -1,0 +1,9 @@
+[tool.robotidy]
+configure = [
+    "NormalizeSeparators:space_count=4",
+    "AlignSettingsSection:up_to_column=3",
+]
+exclude = "venv/*"
+
+[tool.robocop.lint]
+ignore = ["missing-doc-keyword", "missing-doc-suite"]
