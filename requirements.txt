@@ -1,3 +1,5 @@
 robotframework>=6.0.0
 robotframework-browser==18.3.0
 robotframework-robocop
+robotframework-pabot
+allure-robotframework

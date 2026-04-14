@@ -1,13 +1,15 @@
 *** Settings ***
 Documentation       Shared configuration and setup keywords for the SauceDemo UI Framework.
 
+Library             Collections
 Library             Browser
 
 
 *** Variables ***
-${BROWSER}      chromium
-${HEADLESS}     False
-${SLOWMO}       0.5s
+${BASE_URL}             https://www.saucedemo.com/
+${BROWSER}              chromium
+${HEADLESS}             False
+${SLOWMO}               0.5s
 
 
 *** Keywords ***
