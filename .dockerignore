@@ -1,0 +1,21 @@
+# Git
+.git
+.gitignore
+
+# Environments
+venv/
+.env
+
+# Cache
+__pycache__/
+.pytest_cache/
+.robocop_cache/
+
+# IDE
+.vscode/
+
+# Test Results & Artifacts
+results/
+
+# System
+.DS_Store

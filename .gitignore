@@ -1,1 +1,10 @@
 results
+.vscode/mcp.json
+
+#Cache
+__pycache__/
+.pytest_cache/
+.robocop_cache/
+
+#IDE
+.vscode/

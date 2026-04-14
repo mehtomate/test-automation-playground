@@ -14,29 +14,11 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '24'
+    - name: Build Docker Image
+      run: docker build -t enterprise-tests .
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install robotframework robotframework-browser
-
-    - name: Initialize Browser Dependencies
-      run: |
-        rfbrowser init
-
-    - name: Run Robot Framework Tests
-      run: |
-        npx -y playwright install-deps
-        python -m robot -d results -v HEADLESS:True tests/
+    - name: Run Tests in Docker Container
+      run: docker run --ipc=host -v ${{ github.workspace }}/results:/app/results enterprise-tests
 
     - name: Upload Test Results
       if: always()

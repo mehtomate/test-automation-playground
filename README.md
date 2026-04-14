@@ -7,10 +7,12 @@ This framework is built using the **Page Object Model (POM)** design pattern.
 * **`resources/PageObjects/`**: Contains the Page classes/resources. This strictly separates UI locators (CSS/Attributes) and granular interactions from the test logic.
 * **`tests/`**: Contains the human-readable test suites. Test cases consist only of high-level business actions, abstracting away the underlying browser automation.
 
-## 🚀 Features
-- **Strict Locator Strategies**: Prioritizes `data-test` attributes for resilience against UI changes.
-- **Speed & Reliability**: Built on Playwright (via Robot Framework Browser), ensuring automatic waiting and zero flakiness.
-- **Isolated Testing**: Utilizes Browser Contexts (`New Context`) to ensure every test in a suite runs in a completely clean, logged-in state without browser cache contamination.
+## 🚀 Features & Architecture
+- **Page Object Model (POM)**: Tests are strictly separated from UI logic. The Page classes handle locators and actions, while tests handle high-level business scenarios.
+- **Dynamic Dockerization**: The entire test suite and Chromium binaries are packaged into a customized Microsoft Playwright Ubuntu Docker Image. Tests run flawlessly across any OS without manual dependency installation.
+- **Headless CI/CD Pipeline**: GitHub Actions heavily automates the testing strategy on ever push, leveraging the sealed Docker container to run the suite in complete isolation.
+- **Agentic AI Workflow (MCP)**: This repository is uniquely configured to support autonomous Agent connections. Using the Model Context Protocol (MCP), an AI Agent can dynamically read requirements from Notion databases or GitHub Issues and autonomously write new Robot tests leveraging this framework. *(See `mcp_config.example.json` for connectivity patterns).*
+- **Failure Evidence Strategy**: The framework automatically spins up HD Video recordings and creates DOM snapshots on test failures without bloated external libraries.
 
 ## 🏁 Getting Started
 
