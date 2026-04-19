@@ -1,26 +1,26 @@
-# Antigravity SDET Best Practices
+# Autonomous Quality Governance & Alignment Standards
 
-This document defines the core standards for test automation in this repository. All AI agents (Antigravity) and contributors should strictly adhere to these principles.
+This document establishes the authoritative standards for Quality Engineering in this ecosystem. To ensure enterprise-grade scalability and AI-native consistency, all agents and contributors must adhere to these directives.
 
-## 🏗 Page Object Model (POM)
-- **Separation of Concerns**: Strictly separate UI locators and granular interactions from the high-level test logic.
-- **Locator Management**: All locators (CSS, XPath, Data-Tests) MUST reside within `resources/PageObjects/` files.
-- **Granular Keywords**: Page Objects should provide clean, reusable keywords that abstract away the complexity of the UI.
+## 🏗 Modular Architecture (POM)
+- **Domain Separation**: Strictly decouple UI technical implementations (Locators) from business process logic (Keywords).
+- **Locator Strategy**: Prioritize `data-test` and `aria-label` attributes to ensure robust automation that survives front-end refactoring.
+- **Encapsulation**: Keywords must abstract complexity, providing a clean interface for "human-in-the-loop" review.
 
-## 🧪 Declarative Test Design
-- **Business Language**: Test cases in the `tests/` directory should read like high-level business requirements or Acceptance Criteria.
-- **No Low-Level Logic**: Test suites MUST NOT contain technical logic like loops, `IF/ELSE` blocks, list manipulation, or raw assertions.
-- **Abstraction**: If you need to verify a complex state (like a sorted list or a total price calculation), create a high-level keyword in the Page Object instead.
+## 🧪 Declarative Quality design
+- **Business Alignment**: Test specifications must mirror high-level requirements or Acceptance Criteria. Avoid technical implementation details in test suites.
+- **Logic-Less Suites**: Test files should be purely declarative. Logic, transformations, and assertions must be encapsulated within Resource or Library layers.
+- **Data-Driven Execution**: Leverage Robot Framework templates for comprehensive coverage without code duplication.
 
-## 🔍 Encapsulated Verification
-- **Smart Assertions**: Instead of comparing raw data in the test, use descriptive keywords like `Verify Products Are Sorted By Price Low To High`.
-- **Data Parsing**: Logic for parsing strings (e.g., removing currency symbols) belongs in the Page Object or a Library, not the test suite.
+## 🔍 Heuristic Verification & Evidence
+- **Smart Assertions**: Use descriptive, state-based verification keywords (e.g., `Verify Sorting Order Is High To Low`) rather than generic comparisons.
+- **Traceability**: Every check must generate evidentiary artifacts (Video, Screenshots, Logs) to support autonomous triage.
 
-## 🛠 Project Standards
-- **Naming Conventions**: Use clear, descriptive names for all test cases and keywords (e.g., `Verify User Can...` vs `check_login`).
-- **Setup/Teardown**: Leverage `common.resource` for standard suite and context management.
-- **No Hardcoded Data**: Use variables for configuration, credentials, and test data wherever possible.
+## 🚀 Agentic Operations & MCP
+- **Requirement-First Ingestion**: Agents MUST utilize MCP connections to synchronize with the current "Source of Truth" (Notion/GitHub) before generating code.
+- **Autonomous Compliance**: Code generation MUST pass local linting and execution checks before being proposed for merging.
 
-## 🚀 Connectivity Tools (MCP)
-- ALWAYS check for linked Notion Requirement pages or GitHub Issues before starting a task.
-- When a task is complete, update the relevant issue or requirement status via the available tools.
+## 🛠 Project Health & Maintenance
+- **Naming Protocol**: Use industry-standard descriptive naming (e.g., `Verify User Navigation Flow`).
+- **Standardized Setup**: Leverage `common.resource` for global context management.
+- **Variable Management**: Zero hardcoding. Configuration and environment states must be managed via variables.

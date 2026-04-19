@@ -17,7 +17,7 @@ Initialize Test Suite
     New Browser    browser=${BROWSER}    headless=${HEADLESS}    slowMo=${SLOWMO}
 
 Initialize Test Context
-    New Context    viewport={'width': 1280, 'height': 720}    recordVideo={'dir': 'results/videos'}
+    New Context    viewport={'width': 1280, 'height': 720}    recordVideo={'dir': 'results/videos'}    tracing=On
 
 Clean Up Test Context
     Close Context
