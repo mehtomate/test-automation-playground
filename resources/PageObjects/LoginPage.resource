@@ -1,7 +1,6 @@
 *** Settings ***
-Documentation       Page Object for the SauceDemo Login Page.
-
-Resource            ../../resources/common.resource
+Documentation    Page Object for SauceDemo Login Page.
+Library         Browser
 
 
 *** Variables ***
@@ -12,18 +11,15 @@ ${ERROR_CONTAINER}      css=.error-message-container
 
 
 *** Keywords ***
-Open Login Page
-    New Page    ${BASE_URL}
-    Get Title    ==    Swag Labs
-
-Input Credentials
+Login With Credentials
     [Arguments]    ${username}    ${password}
     Fill Text    ${USERNAME_FIELD}    ${username}
-    Fill Secret    ${PASSWORD_FIELD}    $password
-
-Submit Login Form
-    Click    ${LOGIN_BUTTON}
+    Fill Text    ${PASSWORD_FIELD}    ${password}
+    Click        ${LOGIN_BUTTON}
 
 Verify Login Error
-    [Arguments]    ${expected_error_text}
-    Get Text    ${ERROR_CONTAINER}    contains    ${expected_error_text}
+    [Arguments]    ${expected_error}
+    Get Text    ${ERROR_CONTAINER}    contains    ${expected_error}
+
+Verify Landing Page Is Open
+    Get Url    ==    https://www.saucedemo.com/inventory.html
