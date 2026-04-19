@@ -8,7 +8,7 @@ Library             Browser
 *** Variables ***
 ${BASE_URL}             https://www.saucedemo.com/
 ${BROWSER}              chromium
-${HEADLESS}             False
+${HEADLESS}             True
 ${SLOWMO}               0.5s
 
 

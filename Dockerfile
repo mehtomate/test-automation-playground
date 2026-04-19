@@ -1,23 +1,29 @@
-# Use Microsoft's official Playwright python image (contains Node.js and all Ubuntu X11 browser dependencies)
-FROM mcr.microsoft.com/playwright/python:v1.42.0-jammy
+FROM mcr.microsoft.com/playwright:v1.43.0-jammy
 
-# Install Node.js natively (Robot Framework Browser library uses a Node backend)
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs
-
-
-# Establish isolated workspace
+# Set work directory
 WORKDIR /app
 
-# Install python libraries explicitly
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Initialize Browser library binaries via Node.js
-RUN rfbrowser init
-
-# Copy in the rest of the framework codebase (Videos and cache are safely protected by .dockerignore)
+# Copy project files
 COPY . .
 
-# Dictate the default container execution command
-CMD ["python", "-m", "robot", "-d", "results", "-v", "HEADLESS:True", "tests/"]
+# Install system dependencies including xvfb for headless display
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    xvfb \
+    && rm -rf /var/lib/apt/lists/*
+
+# Fix for robot-tests.yml expectations (if needed)
+ENV PATH="/home/pwuser/.local/bin:${PATH}"
+
+# Enable Playwright browser headless mode
+ENV PLAYWRIGHT_HEADLESS=true
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt && \
+    python3 -m textblob.download_corpora lite
+
+# Initialize Playwright
+RUN rfbrowser init
+
+# Default command
+CMD ["robot", "-d", "results", "tests/"]

@@ -3,3 +3,4 @@ robotframework-browser==18.3.0
 robotframework-robocop
 robotframework-pabot
 allure-robotframework
+textblob

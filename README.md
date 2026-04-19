@@ -52,6 +52,7 @@ graph TD
 | **Core Engine** | Robot Framework | Declarative E2E Testing |
 | **Web Driver** | Playwright (Browser Library) | High-Performance Browser Automation |
 | **Agentic Auth** | Model Context Protocol (MCP) | Standardized Agent Connectivity |
+| **Cognitive Quality** | **TextBlob (NLP)** | **Sentiment & Intent Validation** |
 | **Infrastructure**| Docker & GitHub Actions | Containerized CI/CD Portability |
 | **Observability** | Allure & HD Video | Holistic Traceability & Reporting |
 
@@ -64,11 +65,23 @@ Traditional automation is bottlenecked by manual maintenance. This framework is 
 1.  **Autonomous Requirement Mapping**: Directly converting Notion specifications into Robot Framework scripts using the [**`ticket_to_test_agent`**](.agent/prompts/ticket_to_test_agent.prompt.md).
 2.  **Autonomous Alignment**: The agent adheres to strict [**.agent/rules.md**](.agent/rules.md) to ensure maintainable, high-level code that meets  standards.
 3.  **Agent-Assisted Triage**: When UI shifts occur, the [**`pipeline_fixer_agent`**](.agent/prompts/pipeline_fixer_agent.prompt.md) investigates the failure logs and pushes self-healing fixes via Pull Requests.
-    - *Value: Near-zero Mean Time To Repair for UI regressions.*
+
+---
+
+## 🦾 Phase 3: Cognitive Quality (Testing AI itself)
+
+Beyond traditional automation, this framework addresses the challenge of **Non-Deterministic Systems** (GenAI).
+
+-   **Semantic Assertions**: Using the [**`SemanticJudge`**](resources/Libraries/SemanticJudge.py) library to verify intent, sentiment, and compliance via **Natural Language Processing (NLP)**.
+-   **Intelligent Validation**: Demonstration suites like [**`ai_feature_tests.robot`**](tests/ai_feature_tests.robot) show how to test AI-native features that generate dynamic content.
+-   **Strategic Strategy**: Read our [**AI Quality Strategy**](docs/AI_QUALITY_STRATEGY.md) whitepaper on handling hallucinations and bias.
+-   **Education**: See the [**How It Works**](docs/HOW_IT_WORKS.md) guide for a deep dive into the cognitive validation logic.
 
 ---
 
 ## 🦾 Agent-Assisted Triage & Self-Healing
+
+This framework follows the **Agent-Assisted Triage** model:
 
 1.  **CI Failure Detection**: A regression is detected in GitHub Actions.
 2.  **Autonomous Investigation**: A specialized AI Agent is summoned to investigate the failure logs and visit the application via a browser subagent.
@@ -93,6 +106,8 @@ sequenceDiagram
 ---
 
 ## ⚡ Parallel Execution & Performance
+
+Suite utilizes **Pabot** to parallelize execution, reducing total run time.
 
 **Command executed in CI:**
 ```bash
@@ -122,6 +137,7 @@ pabot --processes 2 -d results --listener allure_robotframework:results/allure-r
    docker build -t saucedemo-tests .
    docker run --ipc=host -v $(pwd)/results:/app/results saucedemo-tests
    ```
+5. **AI Cognitive Tests**: `python3 -m robot -d results tests/ai_feature_tests.robot`
 
 ---
 
