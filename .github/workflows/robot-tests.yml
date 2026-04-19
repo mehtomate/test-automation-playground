@@ -23,10 +23,40 @@ jobs:
     - name: Run Tests in Parallel with Pabot
       run: |
         mkdir -p results/allure-results
+        # Inject Failure Categories
+        cp .github/allure/categories.json results/allure-results/
+        
+        # Run tests
         docker run --ipc=host \
           -v ${{ github.workspace }}/results:/app/results \
           enterprise-tests \
           pabot --processes 2 -d results --listener allure_robotframework:results/allure-results -v HEADLESS:True tests/
+
+    - name: Generate Allure Metadata
+      if: always()
+      run: |
+        # Generate Environment Properties
+        cat <<EOF > results/allure-results/environment.properties
+        Project=Autonomous Quality Engineering
+        Framework=Robot Framework 7.0
+        Driver=Playwright
+        Agent=Antigravity Quality Specialist
+        Environment=GitHub Actions CI
+        OS=${{ runner.os }}
+        Node_Version=$(node -v)
+        EOF
+        
+        # Generate Executor Info
+        cat <<EOF > results/allure-results/executor.json
+        {
+          "name": "GitHub Actions",
+          "type": "github",
+          "url": "${{ github.server_url }}/${{ github.repository }}",
+          "buildOrder": ${{ github.run_number }},
+          "buildName": "Run #${{ github.run_number }}",
+          "buildUrl": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        }
+        EOF
 
     - name: Upload Test Results
       if: always()

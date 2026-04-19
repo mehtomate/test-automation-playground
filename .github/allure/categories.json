@@ -1,0 +1,22 @@
+[
+  {
+    "name": "🔴 UI Regression / Logic Defect",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*"
+  },
+  {
+    "name": "🦾 Autonomous Repair Required",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*(Element with selector|TimeoutError|waiting for locator).*"
+  },
+  {
+    "name": "🏗 Infrastructure / Docker Flake",
+    "matchedStatuses": ["failed", "broken"],
+    "messageRegex": ".*(Connection refused|ENOTFOUND|ECONNREFUSED).*"
+  },
+  {
+    "name": "⏱ CI/CD Timing Issues",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*(timeout exceeded|Wait For Elements State).*"
+  }
+]

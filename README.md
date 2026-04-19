@@ -1,8 +1,8 @@
 # ⚛️ Autonomous Quality Engineering Framework
 
 ![Build Status](https://github.com/mehtomate/test-automation-playground/actions/workflows/robot-tests.yml/badge.svg)
-[![Allure Report](https://img.shields.io/badge/allure-report-passing-green.svg)](https://mehtomate.github.io/test-automation-playground/)
-[![Parallel Execution](https://img.shields.io/badge/pabot-parallel-blue.svg)](#-parallel-execution-pabot)
+[![Allure Report](https://img.shields.io/badge/Allure_Report-View_Live-green)](https://mehtomate.github.io/test-automation-playground/)
+[![Parallel Execution](https://img.shields.io/badge/Parallel-Pabot-blue)](#-parallel-execution-pabot)
 
 This repository demonstrates an experimental **AI-Native Test Automation Framework**. Designed to be consumed by autonomous agents via the **Model Context Protocol (MCP)**, it bridges the gap between high-level business requirements and verifiable, self-healing automation.
 
@@ -32,7 +32,7 @@ graph TD
     subgraph "Infrastructure & Self-Healing"
         F["Dockerized Execution"]
         G["GitHub Actions CI/CD"]
-        H["Autonomous Triage & Fixer"]
+        H["Autonomous Fixer"]
     end
 
     A -->|MCP Context| B
@@ -62,25 +62,18 @@ graph TD
 Traditional automation is bottlenecked by manual maintenance. This framework is "AI-First," enabling:
 
 1.  **Autonomous Requirement Mapping**: Directly converting Notion specifications into Robot Framework scripts using the [**`ticket_to_test_agent`**](.agent/prompts/ticket_to_test_agent.prompt.md).
-    - *ROI: 70% reduction in manual test creation effort.*
-2.  **Autonomous Alignment**: The agent adheres to strict [**.agent/rules.md**](.agent/rules.md) to ensure maintainable, professional-grade code that meets consultancy standards.
-    - *Value: Guaranteed adherence to architectural best practices without manual code reviews.*
+2.  **Autonomous Alignment**: The agent adheres to strict [**.agent/rules.md**](.agent/rules.md) to ensure maintainable, high-level code that meets  standards.
 3.  **Agent-Assisted Triage**: When UI shifts occur, the [**`pipeline_fixer_agent`**](.agent/prompts/pipeline_fixer_agent.prompt.md) investigates the failure logs and pushes self-healing fixes via Pull Requests.
-    - *Value: Near-zero MTTR (Mean Time To Repair) for UI regressions.*
+    - *Value: Near-zero Mean Time To Repair for UI regressions.*
 
 ---
 
 ## 🦾 Agent-Assisted Triage & Self-Healing
 
-In a professional QA Consultancy setting, total automation is secondary to **Governance and Trust**. This framework follows the **Agent-Assisted Triage** model:
-
 1.  **CI Failure Detection**: A regression is detected in GitHub Actions.
 2.  **Autonomous Investigation**: A specialized AI Agent is summoned to investigate the failure logs and visit the application via a browser subagent.
 3.  **Self-Healing Proposal**: The agent identifies the root cause (e.g., a changed locator) and autonomously creates a **Pull Request** with the necessary fix.
 4.  **Human Verification**: The SDET (Human) reviews the PR, verifies the impact, and merges the fix.
-
-> [!TIP]
-> **Consultancy Value**: This model drastically reduces MTTR from hours to minutes, while maintaining 100% human oversight for production stability.
 
 ### The Self-Healing Workflow
 ```mermaid
@@ -100,8 +93,6 @@ sequenceDiagram
 ---
 
 ## ⚡ Parallel Execution & Performance
-
-To meet enterprise service-level agreements (SLAs), the suite utilizes **Pabot** to parallelize execution, reducing total run time by over **50%**.
 
 **Command executed in CI:**
 ```bash
