@@ -1,6 +1,6 @@
 # 📖 How It Works: The Cognitive Quality Layer
 
-This document explains the "Phase 3" features of this framework in simple terms. You can use these explanations to describe the project to recruiters or teammates.
+This document explains the "Phase 3" features of this framework in simple terms.
 
 ---
 
@@ -38,6 +38,6 @@ Traditional testing uses `100% Match`. We use an **Inclusion Ratio**.
 We built this so it can grow. Right now it has three levels:
 1. **Level 1 (Heuristics)**: Fast, basic word-matching.
 2. **Level 2 (Local NLP)**: Uses `TextBlob` to analyze tone without needing the internet.
-3. **Level 3 (Cloud AI)**: Ready to be connected to **Hugging Face** or **OpenAI** for even deeper understanding.
+3. **Level 3 (Cloud AI)**: Ready to be connected to **Hugging Face** or **LLM models** for even deeper understanding.
 
 ---

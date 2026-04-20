@@ -134,8 +134,8 @@ pabot --processes 2 -d results --listener allure_robotframework:results/allure-r
 3. **Parallel Run**: `pabot -d results tests/`
 4. **Docker Execution**: 
    ```bash
-   docker build -t saucedemo-tests .
-   docker run --ipc=host -v $(pwd)/results:/app/results saucedemo-tests
+   docker build -t ai-qa-framework .
+   docker run --ipc=host -v $(pwd)/results:/app/results ai-qa-framework
    ```
 5. **AI Cognitive Tests**: `python3 -m robot -d results tests/ai_feature_tests.robot`
 
